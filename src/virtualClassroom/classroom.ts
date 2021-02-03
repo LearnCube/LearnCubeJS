@@ -1,6 +1,6 @@
 import {Learncube} from "../index";
 
-class Classroom extends Learncube {
+export class Classroom extends Learncube {
   constructor(public_key: string, private_key: string, api_base_path: string | undefined) {
     super(private_key, private_key, api_base_path);
   }

@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import {Participants} from "./virtualClassroom/participants";
+import {Participants, Logs, Classroom} from "./virtualClassroom";
 
 
 export class Learncube {
@@ -64,4 +64,10 @@ export class Learncube {
     });
     return await response.json();
   }
+}
+
+export {
+  Logs,
+  Participants,
+  Classroom
 }
