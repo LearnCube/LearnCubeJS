@@ -6,11 +6,11 @@ export class Logs extends Learncube {
     super(private_key, private_key, api_base_path);
   }
 
-  read(uuid: string) {
-    return this.get(`logs/${uuid}/`)
+  async read(uuid: string) {
+    return await this.get(`logs/${uuid}/`)
   }
 
-  list(params: object) {
-    return this.get('logs/', params)
+  async list(params: object) {
+    return await this.get('logs/', params)
   }
 }

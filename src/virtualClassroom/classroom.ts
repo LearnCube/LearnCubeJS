@@ -5,23 +5,23 @@ class Classroom extends Learncube {
     super(private_key, private_key, api_base_path);
   }
 
-  create(room_token: string, params: object) {
-    return this.post('classrooms/', {room_token, ...params})
+  async create(room_token: string, params: object) {
+    return await this.post('classrooms/', {room_token, ...params})
   }
 
-  read(uuid: string) {
-    return this.get(`classrooms/${uuid}/`)
+  async read(uuid: string) {
+    return await this.get(`classrooms/${uuid}/`)
   }
 
-  list(params: object) {
-    return this.get('classrooms/', params)
+  async list(params: object) {
+    return await this.get('classrooms/', params)
   }
 
-  update(uuid: string, params: object) {
-    return this.put(`classrooms/${uuid}/`, params)
+  async update(uuid: string, params: object) {
+    return await this.put(`classrooms/${uuid}/`, params)
   }
 
-  delete(uuid: string): any {
-    return super.delete(`classrooms/${uuid}/`);
+  async delete(uuid: string) {
+    return await super.delete(`classrooms/${uuid}/`);
   }
 }

@@ -6,11 +6,11 @@ export class Participants extends Learncube {
     super(private_key, private_key, api_base_path);
   }
 
-  read(uuid: string) {
-    return this.get(`participants/${uuid}/`)
+  async read(uuid: string) {
+    return await this.get(`participants/${uuid}/`)
   }
 
-  list(params: object) {
-    return this.get('participants/', params)
+  async list(params: object) {
+    return await this.get('participants/', params)
   }
 }
