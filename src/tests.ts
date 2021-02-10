@@ -67,7 +67,7 @@ describe("Virtual Classroom", () => {
     let uuid = "";
     const room_token = "testing_token";
     it("Should create a classroom", (done) => {
-      lc.classroom.create(room_token, {}).then((room) => {
+      lc.classroom.create({room_token: room_token}).then((room) => {
         assert(room.uuid)
         uuid = room.uuid
         done()
@@ -81,7 +81,7 @@ describe("Virtual Classroom", () => {
       })
     });
     it("Should list classrooms", (done) => {
-      lc.classroom.list({}).then((rooms) => {
+      lc.classroom.list().then((rooms) => {
         assert(rooms.results.length > 0)
         done()
       })
