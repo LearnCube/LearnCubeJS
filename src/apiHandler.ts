@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 
+import {URLSearchParams} from 'url';
+
 export class APIHandler {
 
   private lastValidToken: string | undefined = "";
@@ -38,9 +40,9 @@ export class APIHandler {
     return this.lastValidToken
   }
 
-  async get(endpoint: string, params: object = {}) {
+  async get(endpoint: string, params: any = {}) {
     const headers = {'Authorization': 'Bearer ' + (await this.getValidToken())}
-    const response = await fetch(this.apiBasePath + endpoint, {headers: headers});
+    const response = await fetch(this.apiBasePath + endpoint + '?' + new URLSearchParams(params), {headers: headers});
     return await response.json();
   }
 
