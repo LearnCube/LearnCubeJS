@@ -286,3 +286,4 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all,macos,windows,vscode,node,yarn
 /build/
+/src/credentials.ts

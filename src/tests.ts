@@ -1,8 +1,7 @@
 import {APIHandler, Participants, Classroom, Logs, Learncube} from ".";
+import {public_key, private_key} from "./credentials";
 import {assert} from "chai";
 
-const public_key = ""
-const private_key = ""
 const api_base_path = ""
 
 describe("Core", function () {
@@ -33,7 +32,10 @@ describe("Virtual Classroom", () => {
     const lc = new Learncube(public_key, private_key)
     it("Should read a participant", (done) => {
       const uuid = ""
-      lc.participants.read(uuid)
+      lc.participants.read(uuid).then((res) => {
+        console.log(res)
+        done()
+      })
     });
     it("Should list participants", (done) => {
       lc.participants.list({})

@@ -2,7 +2,7 @@ import {APIHandler} from "../apiHandler";
 
 export class Classroom extends APIHandler {
   constructor(public_key: string, private_key: string, api_base_path: string | undefined) {
-    super(private_key, private_key, api_base_path);
+    super(public_key, private_key, api_base_path);
   }
 
   async create(room_token: string, params: object) {

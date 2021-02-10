@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 export class APIHandler {
 
-  private lastValidToken: string | undefined;
+  private lastValidToken: string | undefined = "";
   private PUBLIC_KEY: string;
   private PRIVATE_KEY: string;
   private apiBasePath: string;
@@ -15,14 +15,26 @@ export class APIHandler {
 
   private async getValidToken() {
     const verifyTokenEndpoint = this.apiBasePath + "verify-api-token/"
+    const getTokenEndpoint = this.apiBasePath + "get-api-token/"
 
     let data: object = {"token": this.lastValidToken}
-    let response = await fetch(verifyTokenEndpoint, {method: "post", body: JSON.stringify(data)})
+    let response = await fetch(verifyTokenEndpoint, {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {'Content-Type': 'application/json'}
+    })
 
     if (response.status !== 200) {
       // create token
       data = {"api_public_key": this.PUBLIC_KEY, "api_private_key": this.PRIVATE_KEY}
-      response = await fetch(verifyTokenEndpoint, {method: "post", body: JSON.stringify(data)})
+      console.log(data)
+      console.log(getTokenEndpoint)
+      response = await fetch(getTokenEndpoint, {
+        method: "post",
+        body: JSON.stringify(data),
+        headers: {'Content-Type': 'application/json'}
+      })
+      console.log((await response.json()))
       this.lastValidToken = (await response.json()).token
     }
 
