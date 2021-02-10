@@ -39,7 +39,7 @@ describe("Virtual Classroom", () => {
       })
     });
     it("Should list participants", (done) => {
-      lc.participants.list({}).then(participants => {
+      lc.participants.list().then(participants => {
         // console.log(participants)
         done()
       })
@@ -48,7 +48,7 @@ describe("Virtual Classroom", () => {
   describe("Logs", () => {
     let uuid = "";
     it("Should list logs", (done) => {
-      lc.logs.list({}).then((logs) => {
+      lc.logs.list().then((logs) => {
         assert(logs.results)
         assert(logs.results.length > 0)
         //set a uuid for the next test
