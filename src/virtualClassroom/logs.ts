@@ -1,4 +1,5 @@
 import {APIHandler} from "../apiHandler";
+import {LogList, Log} from "../faces";
 
 export class Logs extends APIHandler {
 
@@ -6,11 +7,11 @@ export class Logs extends APIHandler {
     super(public_key, private_key, api_base_path);
   }
 
-  async read(uuid: string) {
+  async read(uuid: string): Promise<Log> {
     return await this.get(`logs/${uuid}/`)
   }
 
-  async list(params: object) {
+  async list(params: object): Promise<LogList> {
     return await this.get('logs/', params)
   }
 }

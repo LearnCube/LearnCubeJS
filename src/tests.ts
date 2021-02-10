@@ -38,39 +38,66 @@ describe("Virtual Classroom", () => {
       })
     });
     it("Should list participants", (done) => {
-      lc.participants.list({})
+      lc.participants.list({}).then(participants => {
+        console.log(participants)
+        done()
+      })
     });
   })
   describe("Logs", () => {
     const lc = new Learncube(public_key, private_key)
-    it("Should read a log", (done) => {
-      const uuid = ""
-      lc.logs.read(uuid)
-    });
+    let uuid = "";
     it("Should list logs", (done) => {
-      lc.logs.list({})
+      lc.logs.list({}).then((logs) => {
+        assert(logs.results)
+        assert(logs.results.length > 0)
+        //set a uuid for the next test
+        uuid = logs.results[0].uuid
+        done()
+      })
+    });
+    it("Should read log", (done) => {
+      lc.logs.read(uuid).then((log) => {
+        assert(log.uuid === uuid)
+        done()
+      })
     });
   })
   describe("Classroom", () => {
     const lc = new Learncube(public_key, private_key)
     it("Should create a classroom", (done) => {
       const room_token = "";
-      lc.classroom.create(room_token, {})
+      lc.classroom.create(room_token, {}).then((room) => {
+        console.log(room)
+        done()
+      })
     });
     it("Should read a classroom", (done) => {
       const uuid = "";
-      lc.classroom.read(uuid)
+      lc.classroom.read(uuid).then((room) => {
+        console.log(room)
+        done()
+      })
     });
     it("Should list classrooms", (done) => {
-      lc.classroom.list({})
+      lc.classroom.list({}).then((rooms) => {
+        console.log(rooms)
+        done()
+      })
     });
     it("Should update a classroom", (done) => {
       const uuid = "";
-      lc.classroom.update(uuid, {})
+      lc.classroom.update(uuid, {}).then((room) => {
+        console.log(room)
+        done()
+      })
     });
     it("Should delete a classroom", (done) => {
       const uuid = "";
-      lc. classroom.delete(uuid)
+      lc.classroom.delete(uuid).then((res) => {
+        console.log(res)
+        done()
+      })
     });
   })
 });
