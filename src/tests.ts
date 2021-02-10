@@ -100,4 +100,19 @@ describe("Virtual Classroom", () => {
       })
     });
   })
+  describe("Troubleshooter", () => {
+    it("Should get a troubleshooter event", (done) => {
+      const uuid = ""
+      lc.participants.read(uuid).then((res) => {
+        //console.log(res)
+        done()
+      })
+    });
+    it("Should list  troubleshooter events", (done) => {
+      lc.participants.list().then((events) => {
+        //console.log(events)
+        done()
+      })
+    });
+  })
 });
