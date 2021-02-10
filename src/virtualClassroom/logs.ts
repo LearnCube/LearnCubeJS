@@ -1,6 +1,6 @@
-import {Learncube} from "../index";
+import {APIHandler} from "../index";
 
-export class Logs extends Learncube {
+export class Logs extends APIHandler {
 
   constructor(public_key: string, private_key: string, api_base_path: string | undefined) {
     super(private_key, private_key, api_base_path);

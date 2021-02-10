@@ -4,6 +4,19 @@ import {Participants, Logs, Classroom} from "./virtualClassroom";
 
 export class Learncube {
 
+  logs: Logs;
+  classroom: Classroom;
+  participants: Participants;
+
+  constructor(public_key: string, private_key: string, api_base_path: string | undefined) {
+    this.logs = new Logs(public_key, private_key, api_base_path)
+    this.participants = new Participants(public_key, private_key, api_base_path)
+    this.classroom = new Classroom(public_key, private_key, api_base_path)
+  }
+}
+
+export class APIHandler {
+
   private lastValidToken: string | undefined;
   private PUBLIC_KEY: string;
   private PRIVATE_KEY: string;

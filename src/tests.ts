@@ -1,9 +1,9 @@
-import {Learncube, Participants, Classroom, Logs} from ".";
+import {APIHandler, Participants, Classroom, Logs, Learncube} from ".";
 import {assert} from "chai";
 
 describe("Core", function () {
-  it("Initiate a Learncube instance", (done) => {
-    const client = new Learncube()
+  it("Initiate a APIHandler instance", (done) => {
+    const client = new APIHandler()
   });
   it("Initiate a Participants instance", (done) => {
     const client = new Participants()
@@ -14,43 +14,46 @@ describe("Core", function () {
   it("Initiate a Classroom instance", (done) => {
     const client = new Classroom()
   });
+  it("Initiate a Learncube instance", (done) => {
+    const client = new Learncube()
+  });
 });
 
 describe("Virtual Classroom", () => {
   describe("Participants", () => {
-    const participantsAPI = new Participants()
+    const lc = new Learncube()
     it("Should read a participant", (done) => {
-      participantsAPI.read()
+      lc.participants.read()
     });
     it("Should list participants", (done) => {
-      participantsAPI.list()
+      lc.participants.list()
     });
   })
   describe("Logs", () => {
-    const logsAPI = new Logs()
+    const lc = new Learncube()
     it("Should read a log", (done) => {
-      logsAPI.read()
+      lc.logs.read()
     });
     it("Should list logs", (done) => {
-      logsAPI.list()
+      lc.logs.list()
     });
   })
   describe("Classroom", () => {
-    const classroomAPI = new Classroom()
+    const lc = new Learncube()
     it("Should create a classroom", (done) => {
-      classroomAPI.create()
+      lc.classroom.create()
     });
     it("Should read a classroom", (done) => {
-      classroomAPI.read()
+      lc.classroom.read()
     });
     it("Should list classrooms", (done) => {
-      classroomAPI.list()
+      lc.classroom.list()
     });
     it("Should update a classroom", (done) => {
-      classroomAPI.update()
+      lc.classroom.update()
     });
     it("Should delete a classroom", (done) => {
-      classroomAPI.delete()
+     lc. classroom.delete()
     });
   })
 });
