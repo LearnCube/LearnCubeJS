@@ -27,17 +27,15 @@ export class APIHandler {
     if (response.status !== 200) {
       // create token
       data = {"api_public_key": this.PUBLIC_KEY, "api_private_key": this.PRIVATE_KEY}
-      console.log(data)
-      console.log(getTokenEndpoint)
       response = await fetch(getTokenEndpoint, {
         method: "post",
         body: JSON.stringify(data),
         headers: {'Content-Type': 'application/json'}
       })
-      console.log((await response.json()))
       this.lastValidToken = (await response.json()).token
     }
 
+    return this.lastValidToken
   }
 
   async get(endpoint: string, params: object = {}) {
