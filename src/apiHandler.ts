@@ -57,7 +57,7 @@ export class APIHandler {
   async put(endpoint: string, json: object = {}) {
     const headers = {'Authorization': 'Bearer ' + (await this.getValidToken()), 'Content-Type': 'application/json'}
     const response = await fetch(this.apiBasePath + endpoint, {
-      method: 'post',
+      method: 'put',
       body: JSON.stringify(json),
       headers: headers
     });
@@ -70,6 +70,6 @@ export class APIHandler {
       method: 'delete',
       headers: headers
     });
-    return await response.json();
+    return response.status === 204;
   }
 }

@@ -28,24 +28,24 @@ describe("Core", function () {
 });
 
 describe("Virtual Classroom", () => {
+  const lc = new Learncube(public_key, private_key)
+
   describe("Participants", () => {
-    const lc = new Learncube(public_key, private_key)
     it("Should read a participant", (done) => {
       const uuid = ""
       lc.participants.read(uuid).then((res) => {
-        console.log(res)
+        // console.log(res)
         done()
       })
     });
     it("Should list participants", (done) => {
       lc.participants.list({}).then(participants => {
-        console.log(participants)
+        // console.log(participants)
         done()
       })
     });
   })
   describe("Logs", () => {
-    const lc = new Learncube(public_key, private_key)
     let uuid = "";
     it("Should list logs", (done) => {
       lc.logs.list({}).then((logs) => {
@@ -64,38 +64,38 @@ describe("Virtual Classroom", () => {
     });
   })
   describe("Classroom", () => {
-    const lc = new Learncube(public_key, private_key)
+    let uuid = "";
+    const room_token = "testing_token";
     it("Should create a classroom", (done) => {
-      const room_token = "";
       lc.classroom.create(room_token, {}).then((room) => {
-        console.log(room)
+        assert(room.uuid)
+        uuid = room.uuid
         done()
       })
     });
     it("Should read a classroom", (done) => {
-      const uuid = "";
       lc.classroom.read(uuid).then((room) => {
-        console.log(room)
+        assert(room.uuid === uuid)
+        assert(room.room_token === room_token)
         done()
       })
     });
     it("Should list classrooms", (done) => {
       lc.classroom.list({}).then((rooms) => {
-        console.log(rooms)
+        assert(rooms.results.length > 0)
         done()
       })
     });
     it("Should update a classroom", (done) => {
-      const uuid = "";
-      lc.classroom.update(uuid, {}).then((room) => {
-        console.log(room)
+      lc.classroom.update(uuid, {room_token: room_token}).then((room) => {
+        assert(room.uuid === uuid)
+        assert(room.room_token === room_token)
         done()
       })
     });
     it("Should delete a classroom", (done) => {
-      const uuid = "";
-      lc.classroom.delete(uuid).then((res) => {
-        console.log(res)
+      lc.classroom.delete(uuid).then((deleted) => {
+        assert(deleted)
         done()
       })
     });

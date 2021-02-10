@@ -1,27 +1,28 @@
 import {APIHandler} from "../apiHandler";
+import {ClassroomList, ClassroomInterface} from "../faces";
 
 export class Classroom extends APIHandler {
   constructor(public_key: string, private_key: string, api_base_path: string | undefined) {
     super(public_key, private_key, api_base_path);
   }
 
-  async create(room_token: string, params: object) {
+  async create(room_token: string, params: object): Promise<ClassroomInterface> {
     return await this.post('classrooms/', {room_token, ...params})
   }
 
-  async read(uuid: string) {
+  async read(uuid: string): Promise<ClassroomInterface> {
     return await this.get(`classrooms/${uuid}/`)
   }
 
-  async list(params: object) {
+  async list(params: object): Promise<ClassroomList> {
     return await this.get('classrooms/', params)
   }
 
-  async update(uuid: string, params: object) {
+  async update(uuid: string, params: object): Promise<ClassroomInterface> {
     return await this.put(`classrooms/${uuid}/`, params)
   }
 
-  async delete(uuid: string) {
+  async delete(uuid: string): Promise<boolean> {
     return await super.delete(`classrooms/${uuid}/`);
   }
 }
