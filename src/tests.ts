@@ -1,59 +1,74 @@
 import {APIHandler, Participants, Classroom, Logs, Learncube} from ".";
 import {assert} from "chai";
 
+const public_key = ""
+const private_key = ""
+const api_base_path = ""
+
 describe("Core", function () {
   it("Initiate a APIHandler instance", (done) => {
-    const client = new APIHandler()
+    const client = new APIHandler(public_key, private_key, api_base_path)
+    done()
   });
   it("Initiate a Participants instance", (done) => {
-    const client = new Participants()
+    const client = new Participants(public_key, private_key, api_base_path)
+    done()
   });
   it("Initiate a Logs instance", (done) => {
-    const client = new Logs()
+    const client = new Logs(public_key, private_key, api_base_path)
+    done()
   });
   it("Initiate a Classroom instance", (done) => {
-    const client = new Classroom()
+    const client = new Classroom(public_key, private_key, api_base_path)
+    done()
   });
   it("Initiate a Learncube instance", (done) => {
-    const client = new Learncube()
+    const client = new Learncube(public_key, private_key)
+    done()
   });
 });
 
 describe("Virtual Classroom", () => {
   describe("Participants", () => {
-    const lc = new Learncube()
+    const lc = new Learncube(public_key, private_key)
     it("Should read a participant", (done) => {
-      lc.participants.read()
+      const uuid = ""
+      lc.participants.read(uuid)
     });
     it("Should list participants", (done) => {
-      lc.participants.list()
+      lc.participants.list({})
     });
   })
   describe("Logs", () => {
-    const lc = new Learncube()
+    const lc = new Learncube(public_key, private_key)
     it("Should read a log", (done) => {
-      lc.logs.read()
+      const uuid = ""
+      lc.logs.read(uuid)
     });
     it("Should list logs", (done) => {
-      lc.logs.list()
+      lc.logs.list({})
     });
   })
   describe("Classroom", () => {
-    const lc = new Learncube()
+    const lc = new Learncube(public_key, private_key)
     it("Should create a classroom", (done) => {
-      lc.classroom.create()
+      const room_token = "";
+      lc.classroom.create(room_token, {})
     });
     it("Should read a classroom", (done) => {
-      lc.classroom.read()
+      const uuid = "";
+      lc.classroom.read(uuid)
     });
     it("Should list classrooms", (done) => {
-      lc.classroom.list()
+      lc.classroom.list({})
     });
     it("Should update a classroom", (done) => {
-      lc.classroom.update()
+      const uuid = "";
+      lc.classroom.update(uuid, {})
     });
     it("Should delete a classroom", (done) => {
-     lc. classroom.delete()
+      const uuid = "";
+      lc. classroom.delete(uuid)
     });
   })
 });

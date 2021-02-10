@@ -1,4 +1,4 @@
-import {APIHandler} from "../index";
+import {APIHandler} from "../apiHandler";
 
 export class Participants extends APIHandler {
 

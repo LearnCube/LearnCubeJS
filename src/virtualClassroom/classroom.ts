@@ -1,4 +1,4 @@
-import {APIHandler} from "../index";
+import {APIHandler} from "../apiHandler";
 
 export class Classroom extends APIHandler {
   constructor(public_key: string, private_key: string, api_base_path: string | undefined) {
