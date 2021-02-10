@@ -5,23 +5,23 @@ import {assert} from "chai";
 const api_base_path = ""
 
 describe("Core", function () {
-  it("Initiate a APIHandler instance", (done) => {
+  it("Initiate an APIHandler instance", (done) => {
     const client = new APIHandler(public_key, private_key, api_base_path)
     done()
   });
-  it("Initiate a Participants instance", (done) => {
+  it("Initiate a participants instance", (done) => {
     const client = new Participants(public_key, private_key, api_base_path)
     done()
   });
-  it("Initiate a Logs instance", (done) => {
+  it("Initiate a logs instance", (done) => {
     const client = new Logs(public_key, private_key, api_base_path)
     done()
   });
-  it("Initiate a Classroom instance", (done) => {
+  it("Initiate a classroom instance", (done) => {
     const client = new Classroom(public_key, private_key, api_base_path)
     done()
   });
-  it("Initiate a Learncube instance", (done) => {
+  it("Initiate a learncube instance", (done) => {
     const client = new Learncube(public_key, private_key)
     done()
   });
@@ -56,7 +56,7 @@ describe("Virtual Classroom", () => {
         done()
       })
     });
-    it("Should read log", (done) => {
+    it("Should read a log", (done) => {
       lc.logs.read(uuid).then((log) => {
         assert(log.uuid === uuid)
         done()
