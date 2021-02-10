@@ -1,4 +1,4 @@
-import {APIHandler, Participants, Classroom, Logs, Learncube} from ".";
+import {APIHandler, Participants, Classroom, Logs, Learncube, Troubleshooter} from ".";
 import {public_key, private_key} from "./credentials";
 import {assert} from "chai";
 
@@ -19,6 +19,10 @@ describe("Core", function () {
   });
   it("Initiate a classroom instance", (done) => {
     const client = new Classroom(public_key, private_key, api_base_path)
+    done()
+  });
+  it("Initiate a troubleshooter instance", (done) => {
+    const client = new Troubleshooter(public_key, private_key, api_base_path)
     done()
   });
   it("Initiate a learncube instance", (done) => {
@@ -103,13 +107,13 @@ describe("Virtual Classroom", () => {
   describe("Troubleshooter", () => {
     it("Should get a troubleshooter event", (done) => {
       const uuid = ""
-      lc.participants.read(uuid).then((res) => {
+      lc.troubleshooter.read(uuid).then((res) => {
         //console.log(res)
         done()
       })
     });
     it("Should list  troubleshooter events", (done) => {
-      lc.participants.list().then((events) => {
+      lc.troubleshooter.list().then((events) => {
         //console.log(events)
         done()
       })
