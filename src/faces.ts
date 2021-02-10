@@ -5,18 +5,6 @@ export interface PaginatedList {
   results: any[]
 }
 
-export interface Log {
-  uuid: string
-  token: string
-  slug: string
-  userid: any //todo what type?
-  creation_date: string,
-  type: string // todo fixed types?
-  status: string // todo fixed types?
-  info: string // todo fixed types?
-  response: any //todo what type?
-}
-
 export interface Participant {
 
 }
@@ -46,9 +34,6 @@ export interface ClassroomInterface {
   slug: string
 }
 
-export interface LogList extends PaginatedList {
-  results: Log[]
-}
 
 export interface ParticipantList extends PaginatedList {
   results: Participant[]
