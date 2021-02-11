@@ -16,7 +16,7 @@ export class APIHandler {
     this.apiBasePath = api_base_path
   }
 
-  private async getNewAccessToken() {
+  private async getNewAccessToken(): Promise<string> {
     // create token
     const data = {"api_public_key": this.PUBLIC_KEY, "api_private_key": this.PRIVATE_KEY}
     const response = await fetch(this.apiBasePath + "get-api-token/", {
