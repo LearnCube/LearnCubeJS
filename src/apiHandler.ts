@@ -47,6 +47,7 @@ export class APIHandler {
       // set token
       this.lastValidToken = await this.getNewAccessToken()
     } else {
+      // todo show options, a) by time b) by endpoint
       // in case a token is set, check for the time difference in minutes
       const diff = (new Date().getTime() - this.lastValidTokenDate.getTime()) / 1000.0 / 60.0
       // if the difference is greater than 4.5 minutes, create a new access token
