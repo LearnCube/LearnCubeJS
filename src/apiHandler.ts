@@ -5,6 +5,7 @@ import {URLSearchParams} from 'url';
 export class APIHandler {
 
   private lastValidToken: string | undefined = "";
+  private lastValidTokenDate: any = undefined
   private PUBLIC_KEY: string;
   private PRIVATE_KEY: string;
   private apiBasePath: string;
@@ -15,26 +16,43 @@ export class APIHandler {
     this.apiBasePath = api_base_path
   }
 
-  private async getValidToken() {
-    const verifyTokenEndpoint = this.apiBasePath + "verify-api-token/"
-    const getTokenEndpoint = this.apiBasePath + "get-api-token/"
-
-    let data: object = {"token": this.lastValidToken}
-    let response = await fetch(verifyTokenEndpoint, {
+  private async getNewAccessToken() {
+    // create token
+    const data = {"api_public_key": this.PUBLIC_KEY, "api_private_key": this.PRIVATE_KEY}
+    const response = await fetch(this.apiBasePath + "get-api-token/", {
       method: "post",
       body: JSON.stringify(data),
       headers: {'Content-Type': 'application/json'}
     })
 
-    if (response.status !== 200) {
-      // create token
-      data = {"api_public_key": this.PUBLIC_KEY, "api_private_key": this.PRIVATE_KEY}
-      response = await fetch(getTokenEndpoint, {
-        method: "post",
-        body: JSON.stringify(data),
-        headers: {'Content-Type': 'application/json'}
-      })
-      this.lastValidToken = (await response.json()).token
+    this.lastValidTokenDate = new Date()
+    return (await response.json()).token
+  }
+
+  private async accessTokenValid(): Promise<Boolean> {
+    const data = {"token": this.lastValidToken}
+    const response = await fetch(this.apiBasePath + "verify-api-token/", {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {'Content-Type': 'application/json'}
+    })
+
+    return response.status === 200
+  }
+
+  private async getValidToken() {
+
+    // if no token is set, get new token
+    if (!this.lastValidToken) {
+      // set token
+      this.lastValidToken = await this.getNewAccessToken()
+    } else {
+      // in case a token is set, check for the time difference in minutes
+      const diff = (new Date().getTime() - this.lastValidTokenDate.getTime()) / 1000.0 / 60.0
+      // if the difference is greater than 4.5 minutes, create a new access token
+      if (diff > 4.5) {
+        this.lastValidToken = await this.getNewAccessToken()
+      }
     }
 
     return this.lastValidToken
