@@ -8,7 +8,7 @@ interface ClassroomListInput {
   start_after?: string
   company_slug?: string
   teacher_attended?: boolean
-  teacher_id?: string // todo maybe number?
+  teacher_id?: string
 }
 
 interface ClassroomInput {
@@ -22,6 +22,7 @@ interface ClassroomInput {
   whiteboard_only?: boolean
   return_url?: string
   record_class?: boolean
+  teacher_id?: string
 }
 
 export class Classroom extends APIHandler {

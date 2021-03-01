@@ -13,7 +13,7 @@ export interface ClassroomInterface {
   uuid: string
   teacher_id: string
   creation_date: string
-  room_token: any //todo what type?
+  room_token?: string
   cancelled: boolean
   cancelled_by: any //todo what type?
   description: string
