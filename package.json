@@ -1,8 +1,11 @@
 {
-  "name": "learncube",
+  "name": "@learncube/learncube",
   "version": "0.0.0",
   "description": "",
   "author": "Fabian Riewe <f.riewe@bueffelheld.de>",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup -c",
     "test": "rollup -c rollup.test.js && mocha 'build/index.test.js' --no-timeout --exit",
